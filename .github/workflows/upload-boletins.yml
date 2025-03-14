@@ -1,1 +1,27 @@
-.gitkeep
+name: Upload Boletins
+
+on:
+  repository_dispatch:
+    types: [upload-boletim]
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Criar diretório de boletins, se não existir
+        run: mkdir -p boletins
+
+      - name: Adicionar arquivo do boletim
+        env:
+          ACCESS_TOKEN: ${{ secrets.PATH_REPO }}
+        run: |
+          echo "${{ github.event.client_payload.content }}" | base64 --decode > boletins/${{ github.event.client_payload.filename }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add boletins/${{ github.event.client_payload.filename }}
+          git commit -m "📄 Adicionando boletim: ${{ github.event.client_payload.filename }}"
+          git push https://x-access-token:${ACCESS_TOKEN}@github.com/tharlesjcp/iprc-boletins-publico.git main
