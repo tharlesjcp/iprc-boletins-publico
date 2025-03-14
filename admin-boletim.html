@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciar Boletins</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="main-content">
+        <h1>📂 Gerenciar Boletins</h1>
+
+        <section>
+            <h2>📤 Enviar Novo Boletim</h2>
+            <input type="file" id="boletimFile" accept=".pdf">
+            <button onclick="uploadBoletim()">Enviar Boletim</button>
+        </section>
+
+        <section>
+            <h2>📜 Boletins Publicados</h2>
+            <div id="lista-boletins"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
