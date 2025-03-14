@@ -17,7 +17,7 @@ jobs:
 
       - name: Adicionar arquivo do boletim
         env:
-          ACCESS_TOKEN: ${{ secrets.PATH_REPO }}
+          ACCESS_TOKEN: ${{ secrets.PUBLIC_PATH_REPO }}
         run: |
           echo "${{ github.event.client_payload.content }}" | base64 --decode > boletins/${{ github.event.client_payload.filename }}
           git config --global user.name "GitHub Actions"
